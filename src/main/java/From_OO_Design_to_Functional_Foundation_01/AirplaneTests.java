@@ -1,4 +1,4 @@
-package From_OO_Design_to_Functional_Foundation;
+package From_OO_Design_to_Functional_Foundation_01;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,29 +22,7 @@ interface AirplaneCriterion
     boolean test(Airplane airplane);
 }
 
-class AirplanesEmiratesCriterion implements AirplaneCriterion
-{
 
-    @Override
-    public boolean test(Airplane airplane) {
-        return airplane.getAirline().equals("Emirates");
-    }
-}
-
-class AirplanesFuelLevelCriterion implements AirplaneCriterion
-{
-
-    int fuelLevel;
-
-    public AirplanesFuelLevelCriterion(int fuelLevel) {
-        this.fuelLevel = fuelLevel;
-    }
-
-    @Override
-    public boolean test(Airplane airplane) {
-        return airplane.getFuelLevel().equals(this.fuelLevel);
-    }
-}
 
 public class AirplaneTests {
 
@@ -109,7 +87,7 @@ public class AirplaneTests {
         System.out.println("Filtering Airplanes by airlines");
         System.out.println();
 
-        List<Airplane> air_india = getAirplanesByAirlines(airplanes,new AirplanesFuelLevelCriterion(150));
+        List<Airplane> air_india = getAirplanesByAirlines(airplanes,new Airplane.AirplanesFuelLevelCriterion(150));
 
         for(Airplane airplane : air_india)
         {

@@ -1,0 +1,73 @@
+
+A question of ownership
+===========================
+
+keep together , what belongs together
+when someone needs to create something new , impact is minimum possible on the system
+
+AirplaneCriterion should be part of Airplane class itself and not AirplaneTests
+
+
+A question of quantity
+===================================
+
+Make static factory to return the criterion
+
+This hides criterion from client
+
+public constructors are not very flexible
+
+Factory patterns allows you to return an assignment compatible object ,
+instead of exact object type
+allows re-use of an object/criterion
+
+A question of visibility
+=============================================
+
+Food brownie = new ChocolateBrownie();
+
+Food food = new Food(){
+
+};
+
+
+Anonymous class can be used in place of private static Criterion impl and factory style
+This forms basis for lambda expressions
+
+Behaviors can be implemented without a class name . They represent an instance of interface .
+
+AirPlaneCriterion airplaneCriterion = new AirplaneCriterion(){
+
+};
+
+1. On L.H.S we see its a AirPlaneCriterion , that indicates R.H.S must be 100% AirplaneCriterion to
+make assignment possible , we can omit the declaration on right side .
+
+2. AirplaneCriterion has only one method , which is test(Airplane airplane) which takes an airplane as an argument ,
+
+therefore we implicitly know that since only one method is there , and it takes an airplane , we do not require a whole
+method signature to guess that !
+
+
+Lambda expressions only tell you core piece of information required you to invoke behaviour , and remove all useless parts .
+
+
+Lambda Syntax and Rules
+===========================
+
+Is Purpose of the lambda syntax reduction in typing ?  No
+
+It is to make our code focus on things that matter .
+
+To make our behaviour invocation more focussed .
+
+Lambda expressions only require stuff that relates directly to behaviour .
+
+Lambda expressions brings brevity to the way we express object behaviours
+
+Lambda expression can only be woven out of interfaces and not abstract classes , etc .
+
+
+Lambda Syntax variations:
+==================================
+
