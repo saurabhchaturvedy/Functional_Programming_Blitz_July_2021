@@ -1,0 +1,20 @@
+
+
+As while creating static factories of Airplanes , when we filter on airline type , we need to provide airline type as an argument value , and lets
+suppose later in the day , we want to filter by the fuelLevel , then we create one more method to accomplish that .
+
+So what we are doing is just passing the arguments as values , idea is the pass the behavior how to select the object for
+storing into airplane1 list , and then test the criteria against each of the Airplane object .
+
+If it passes the criteria ,
+
+push object to the list
+
+else
+
+discard object
+
+Main idea to understand is :
+
+We want to pass the behaviour as an argument , not state (i.e fuelLevel , or airline)
+
