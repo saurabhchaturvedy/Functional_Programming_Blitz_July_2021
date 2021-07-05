@@ -71,3 +71,63 @@ Lambda expression can only be woven out of interfaces and not abstract classes ,
 Lambda Syntax variations:
 ==================================
 
+1. We are allowed one or more formal parameters
+2. We can leave or remove all of the formal parameters , but not just any one of the them .
+
+(Car c1 , Car c2 ) -> allowed
+(c1,c2) -> allowed
+(Car c1,c2 ) -> not allowed
+
+3. When our lambda expression has only one expression , we can omit curly braces and return statement
+4. When there is only one parameter and single expression , we can also remove parenthesis .
+
+====================================================================================================
+
+@FunctionalInterface annotation helps us enforce functional interfaces by not letting declare more than
+one method in such interfaces and throws compile time error when such thing happens . Doing this , lambda expressions don't break and function properly .
+
+
+Giving Type to Lambdas
+===========================
+
+AirplaneCriterion c = (c) -> c.getFuelLevel()==150;
+
+boolean b = ((AirplaneCriterion)((c) -> c.getFuelLevel() ).test(new Airplane()));
+
+
+Further Generalization
+===================================================
+
+AirplaneCriterion can also be further generalized as its a test method which returns boolean .
+
+Which is not necessarily specific to airplanes .
+
+
+public static T List<T> getAirplanesByAirlines(Iterable<T> airplanes, Criterion<T> airplaneCriterion)
+    {
+
+        List<T> airplanes1 = new ArrayList<>();
+
+        for(T airplane : airplanes)
+        {
+
+            if(airplaneCriterion.test(airplane))
+            {
+                airplanes1.add(airplane);
+            }
+        }
+
+        return airplanes1;
+    }
+
+
+interface Criterion<X>
+{
+
+    boolean test(X x);
+}
+
+
+
+
+

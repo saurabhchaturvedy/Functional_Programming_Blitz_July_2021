@@ -16,10 +16,14 @@ class PassengerCountOrder implements Comparator<Airplane>
     }
 }
 
-interface AirplaneCriterion
+
+
+@FunctionalInterface
+interface Criterion<T>
 {
 
-    boolean test(Airplane airplane);
+    boolean test(T t);
+    // void doStuff(); breaks functional interface
 }
 
 
@@ -53,7 +57,7 @@ public class AirplaneTests {
 //        return airplanes1;
 //    }
 
-    public static List<Airplane> getAirplanesByAirlines(Iterable<Airplane> airplanes, AirplaneCriterion airplaneCriterion)
+    public static List<Airplane> getAirplanesByAirlines(Iterable<Airplane> airplanes, Criterion criterion)
     {
 
         List<Airplane> airplanes1 = new ArrayList<>();
@@ -61,7 +65,7 @@ public class AirplaneTests {
         for(Airplane airplane : airplanes)
         {
 
-            if(airplaneCriterion.test(airplane))
+            if(criterion.test(airplane))
             {
                 airplanes1.add(airplane);
             }

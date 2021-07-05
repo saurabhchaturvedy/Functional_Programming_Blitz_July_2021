@@ -59,16 +59,16 @@ public class Airplane {
                 '}';
     }
 
-    public static AirplaneCriterion getAirplanesEmiratesCriterion()
+    public static Criterion<Airplane> getAirplanesEmiratesCriterion()
     {   // return new AirplanesEmiratesCriterion();
         return AIRPLANES_EMIRATES_CRITERION;  // criterion hidden from caller , no impact on client on change
         // singleton pattern
         // question of quantity
     }
 
-    public static AirplanesFuelLevelCriterion getAirplanesFuelLevelCriterion(int fuelLevel)
+    public static Criterion<Airplane> getAirplanesFuelLevelCriterion(int fuelLevel)
     {   // return new AirplanesEmiratesCriterion();
-        return new AirplanesFuelLevelCriterion(fuelLevel);  // criterion hidden from caller , no impact on client on change
+        return (c -> c.getFuelLevel()==fuelLevel);  // criterion hidden from caller , no impact on client on change
         // not singleton pattern
         // question of quantity
     }
@@ -83,7 +83,7 @@ public class Airplane {
 //    };
 
     // Lambda assignment
-    private static final AirplaneCriterion AIRPLANES_EMIRATES_CRITERION = (airplane) -> {
+    private static final Criterion<Airplane> AIRPLANES_EMIRATES_CRITERION = (airplane) -> {
             return airplane.getAirline().equals("Emirates");
         };
 
@@ -103,18 +103,18 @@ public class Airplane {
 //        }
 //    }
 
-   static class AirplanesFuelLevelCriterion implements AirplaneCriterion
-    {
-
-        int fuelLevel;
-
-        public AirplanesFuelLevelCriterion(int fuelLevel) {
-            this.fuelLevel = fuelLevel;
-        }
-
-        @Override
-        public boolean test(Airplane airplane) {
-            return airplane.fuelLevel.equals(this.fuelLevel);
-        }
-    }
+//   static class AirplanesFuelLevelCriterion implements Criterion<Airplane>
+//    {
+//
+//        int fuelLevel;
+//
+//        public AirplanesFuelLevelCriterion(int fuelLevel) {
+//            this.fuelLevel = fuelLevel;
+//        }
+//
+//        @Override
+//        public boolean test(Airplane airplane) {
+//            return airplane.fuelLevel.equals(this.fuelLevel);
+//        }
+//    }
 }
